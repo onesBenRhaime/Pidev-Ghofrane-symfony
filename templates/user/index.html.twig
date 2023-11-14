@@ -1,0 +1,74 @@
+{% extends 'base-back.html.twig' %}
+
+{% block title %}List of Users
+{% endblock %}
+{% block body %}
+	<div class="az-content pd-y-20 pd-lg-y-30 pd-xl-y-40">
+		<div class="container">
+			<div class="az-content-left az-content-left-components">
+				<div class="component-item">
+					<label>Tables</label>
+					<nav class="nav flex-column">
+						<a href="{{ path('app_user_index') }}" class="nav-link active">Users</a>
+					</nav>
+				</div>
+				<!-- component-item -->
+			</div>
+			<!-- az-content-left -->
+			<div class="az-content-body pd-lg-l-30 d-flex flex-column">
+				<div class="az-content-breadcrumb">
+					<span>Manage</span>
+					<span>Users</span>
+					<span>List</span>
+				</div>
+				<h2 class="az-content-title">
+					List OF Users
+
+				</h2>
+				<div class="table-responsive">
+					<table class="table card-table table-vcenter table-mobile-md text-nowrap datatable">
+						<thead>
+							<tr>
+								<th>Email</th>
+								<th>Roles</th>
+								<th>Nom</th>
+								<th>Prenom</th>
+								<th>Numero Telephone</th>
+								<th>Date Naissance</th>
+								<th>Genre</th>
+								<th>Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							{% for user in users %}
+								<tr>
+									<td>{{ user.email }}</td>
+									<td>{{ user.roles|join(', ') }}</td>
+									<td>{{ user.nom }}</td>
+									<td>{{ user.prenom }}</td>
+									<td>{{ user.numeroTelephone }}</td>
+									<td>{{ user.dateNaissance ? user.dateNaissance|date('Y-m-d') : '' }}</td>
+									<td>{{ user.genre }}</td>
+									<td class="btn-icon-list">
+										<a class="btn btn-success btn-icon" href="{{ path('app_user_show', {'id': user.id}) }}">
+											<i class="typcn typcn-eye-outline"></i>
+										</a>
+										<a class="btn btn-warning btn-icon" href="{{ path('app_user_edit', {'id': user.id}) }}">
+											<i class="typcn typcn-document-add"></i>
+										</a>
+									</td>
+								</tr>
+							</td>
+						</tbody>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="11">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	{# <a href="{{ path('app_user_new') }}">Create new</a> #}
+</div>
+<div class="ht-40"></div></div></div></div>{% endblock %}
