@@ -60,10 +60,22 @@
 												</button>
 											</div>
 										</form>
-										<no</div </td> </tr> </td> </tbody> </tr> {% else %} <tr> <td colspan="5"> records found</td> </tr> {% endfor %} </tbody> </table> {# <a href="{{ path('app_avis_new') }}">Create new</a> #} <div class="ht-40">></div>
 									</td>
 								</tr>
-							</div>
+							{% else %}
+								<tr>
+									<td colspan="5">
+										records found</td>
+								</tr>
+							{% endfor %}
 						</tbody>
-					</div>
-				{% endblock %}
+					</table>
+				</div>
+			</div>
+
+			{# <a href="{{ path('app_avis_new') }}">Create new</a> #}
+			<div class="ht-40"></div>
+
+		</div>
+	</div>
+{% endblock %}

@@ -14,7 +14,14 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/avis')]
 class AvisController extends AbstractController
 {
-    #[Route('/', name: 'app_avis_index', methods: ['GET'])]
+    #[Route('/', name: 'app_avis_user', methods: ['GET'])]
+    public function showuser(AvisRepository $avisRepository): Response
+    {
+        return $this->render('avis/indexUser.html.twig', [
+            'avis' => $avisRepository->findAll(),
+        ]);
+    }
+    #[Route('/tous', name: 'app_avis_index', methods: ['GET'])]
     public function index(AvisRepository $avisRepository): Response
     {
         return $this->render('avis/index.html.twig', [
@@ -33,7 +40,7 @@ class AvisController extends AbstractController
             $entityManager->persist($avi);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_avis_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_avis_user', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('avis/new.html.twig', [
